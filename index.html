@@ -16,6 +16,7 @@
   <input type="text" id="cfg-key" placeholder="eyJhbGci..." />
   <button class="tbtn tbtn-save" onclick="handleSave()">☁ Хадгалах</button>
   <button class="tbtn tbtn-print" onclick="handlePrint()">🖨 Хэвлэх</button>
+  <button class="tbtn tbtn-reset" onclick="handleReset()">↺ Цэвэрлэх</button>
   <span class="tstat" id="tstat"></span>
 </div>
 
@@ -39,12 +40,12 @@
       <hr class="header-divider" />
 
       <!-- ── Reg # ── -->
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+      <div class="reg-row">
         <span style="font-family:Arial;font-size:8px;font-weight:700;color:#111144;">REG #</span>
         <input class="finput" id="reg_no" placeholder="0632"
                style="max-width:70px;font-size:13px;font-weight:700;border-bottom:2px solid #111144;"
                oninput="document.getElementById('reg_no_display').textContent=this.value||'0632'" />
-        <span style="font-family:Arial;font-size:8px;color:#555;margin-left:auto;">
+        <span class="reg-date-wrap" style="font-family:Arial;font-size:8px;color:#555;">
           Огноо / Date:
           <input class="finput" id="reg_date" type="date"
                  style="font-size:9px;border-bottom:1px solid #444;max-width:110px;" />

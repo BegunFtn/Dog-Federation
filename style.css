@@ -6,20 +6,21 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 1rem;
+  padding: 1rem 0.5rem;
   min-height: 100vh;
 }
+
 /* ── Toolbar ── */
 .toolbar {
-  width: 960px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 960px;
   display: flex;
-  gap: 8px;
-  margin-bottom: 12px;
+  gap: 6px;
+  margin-bottom: 10px;
   align-items: center;
   flex-wrap: wrap;
 }
-.toolbar label { font-family: Arial, sans-serif; font-size: 12px; color: #444; }
+.toolbar label { font-family: Arial, sans-serif; font-size: 11px; color: #444; white-space: nowrap; }
 .toolbar input {
   font-family: 'Courier New', monospace;
   font-size: 11px;
@@ -28,34 +29,39 @@ body {
   border-radius: 4px;
   background: #fff;
   color: #222;
-  width: 240px;
+  width: 180px;
+  flex: 1;
+  min-width: 120px;
 }
 .tbtn {
   font-family: Arial, sans-serif;
   font-size: 12px;
   font-weight: 600;
-  padding: 6px 16px;
+  padding: 6px 12px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  white-space: nowrap;
 }
 .tbtn-save { background: #1a3a6e; color: #fff; }
 .tbtn-save:hover { background: #2a5fa8; }
 .tbtn-print { background: #2a2a2a; color: #fff; }
 .tbtn-print:hover { background: #444; }
-.tstat { font-family: Arial, sans-serif; font-size: 11px; color: #666; }
+.tbtn-reset { background: #8a0000; color: #fff; }
+.tbtn-reset:hover { background: #c0392b; }
+.tstat { font-family: Arial, sans-serif; font-size: 11px; color: #666; flex: 1 1 100%; }
 .tstat.ok { color: #1a7a50; }
 .tstat.err { color: #c0392b; }
 .tstat.loading { color: #1a3a6e; }
 
 /* ── Document outer ── */
 .doc-outer {
-  width: 960px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 960px;
   background: #dcdce8;
   border: 3px solid #7777aa;
   position: relative;
-  padding: 8px;
+  padding: 6px;
 }
 .doc-outer::before {
   content: '';
@@ -88,7 +94,7 @@ body {
 .doc-content {
   position: relative;
   z-index: 1;
-  padding: 14px 18px 12px 18px;
+  padding: 10px 12px 10px 12px;
 }
 
 /* ── Page watermark ── */
@@ -97,8 +103,8 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 280px;
-  height: 280px;
+  width: min(280px, 60vw);
+  height: min(280px, 60vw);
   opacity: 0.08;
   pointer-events: none;
   z-index: 0;
@@ -109,13 +115,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 12px;
   margin-bottom: 6px;
   text-align: center;
+  flex-wrap: wrap;
 }
 .header-logo {
-  width: 64px;
-  height: 64px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #8888bb;
@@ -123,23 +130,23 @@ body {
   flex-shrink: 0;
 }
 .header-text h1 {
-  font-size: 14px;
+  font-size: clamp(9px, 1.5vw, 14px);
   font-weight: 900;
-  letter-spacing: 0.10em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #111144;
   font-family: 'Times New Roman', serif;
 }
 .header-text .mn-title {
-  font-size: 11px;
+  font-size: clamp(8px, 1.2vw, 11px);
   color: #111144;
   font-family: 'Times New Roman', serif;
   margin-top: 1px;
 }
 .header-text h2 {
-  font-size: 16px;
+  font-size: clamp(11px, 2vw, 16px);
   font-weight: 900;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
   color: #111144;
   margin-top: 4px;
@@ -148,19 +155,23 @@ body {
 .header-divider {
   border: none;
   border-top: 2px solid #7777aa;
-  margin: 6px 0;
+  margin: 5px 0;
 }
 
 /* ── Reg # ── */
-.reg-num {
-  font-size: 22px;
-  font-weight: 900;
-  color: #111;
-  font-family: Arial, sans-serif;
-  letter-spacing: 0.05em;
-  border: 2px solid #555;
-  padding: 1px 8px;
-  background: #e8e8f8;
+.reg-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+.reg-date-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  flex-wrap: wrap;
 }
 
 /* ── Field rows ── */
@@ -173,17 +184,17 @@ body {
   min-height: 18px;
 }
 .flabel {
-  font-size: 7px;
+  font-size: clamp(6px, 1.2vw, 7px);
   font-weight: 700;
   color: #111;
   white-space: nowrap;
   padding-bottom: 1px;
-  min-width: 44px;
+  min-width: 40px;
   line-height: 1.3;
   font-family: Arial, sans-serif;
 }
 .flabel .mn {
-  font-size: 6.5px;
+  font-size: clamp(5px, 1vw, 6.5px);
   color: #555;
   font-weight: 400;
   display: block;
@@ -192,7 +203,7 @@ body {
   flex: 1;
   border: none;
   background: transparent;
-  font-size: 11px;
+  font-size: clamp(9px, 1.8vw, 11px);
   font-family: 'Times New Roman', serif;
   color: #111;
   padding: 0 2px 1px;
@@ -203,7 +214,7 @@ body {
 
 /* ── Section label ── */
 .slabel {
-  font-size: 6.5px;
+  font-size: clamp(6px, 1vw, 6.5px);
   font-weight: 900;
   letter-spacing: 0.10em;
   text-transform: uppercase;
@@ -218,47 +229,47 @@ body {
 /* ── Top fields grid ── */
 .top-fields {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1.2fr 1fr 1.2fr 1.2fr;
-  gap: 6px;
-  margin-bottom: 6px;
+  grid-template-columns: 2fr 1fr 1fr 1.2fr 1fr 1.2fr;
+  gap: 4px;
+  margin-bottom: 5px;
 }
 
 /* ── Breeder / Owner row ── */
 .breeder-owner-row {
   display: grid;
   grid-template-columns: 1fr 1.5fr 1fr 1.5fr;
-  gap: 6px;
-  margin-bottom: 6px;
+  gap: 4px;
+  margin-bottom: 5px;
 }
 
 /* ── Pedigree section ── */
 .pedigree-section {
   display: grid;
-  grid-template-columns: 160px 1fr 160px;
+  grid-template-columns: 1fr 1.4fr 1fr;
   gap: 0;
   border-top: 1px solid #7777aa;
-  padding-top: 6px;
-  margin-top: 4px;
+  padding-top: 5px;
+  margin-top: 3px;
   position: relative;
 }
 .col-siredam {
-  padding-right: 8px;
+  padding-right: 6px;
   border-right: 1px solid #aaa;
 }
 .col-mid {
-  padding: 0 8px;
+  padding: 0 6px;
   border-right: 1px solid #aaa;
   position: relative;
 }
 .col-right {
-  padding-left: 8px;
+  padding-left: 6px;
 }
 
 /* ── Ancestor inputs ── */
 .anc-input {
   border: none;
   background: transparent;
-  font-size: 10px;
+  font-size: clamp(8px, 1.5vw, 10px);
   font-family: 'Times New Roman', serif;
   color: #111;
   width: 100%;
@@ -266,17 +277,17 @@ body {
   outline: none;
   border-bottom: 1px solid #444;
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 .anc-input:focus { background: rgba(26,58,110,0.06); }
 .anc-label {
-  font-size: 6.5px;
+  font-size: clamp(5px, 1vw, 6.5px);
   color: #555;
   font-family: Arial, sans-serif;
   display: block;
 }
 .anc-num {
-  font-size: 8px;
+  font-size: clamp(6px, 1.2vw, 8px);
   font-weight: 700;
   color: #111;
   font-family: Arial, sans-serif;
@@ -288,8 +299,8 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 160px;
-  height: 160px;
+  width: 120px;
+  height: 120px;
   opacity: 0.10;
   pointer-events: none;
   z-index: 0;
@@ -301,26 +312,26 @@ body {
 .awards-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 7px;
+  font-size: clamp(5px, 1vw, 7px);
   margin-top: 3px;
 }
 .awards-table th {
   background: #111144;
   color: #fff;
-  padding: 2px 4px;
+  padding: 2px 3px;
   text-align: left;
-  font-size: 7px;
+  font-size: clamp(5px, 1vw, 7px);
   font-family: Arial, sans-serif;
 }
 .awards-table td {
   border: 1px solid #999;
-  padding: 1px 3px;
+  padding: 1px 2px;
 }
 .awards-table select,
 .awards-table input[type=text] {
   border: none;
   background: transparent;
-  font-size: 7px;
+  font-size: clamp(5px, 1vw, 7px);
   font-family: inherit;
   color: #111;
   width: 100%;
@@ -329,8 +340,8 @@ body {
 
 /* ── Certify note ── */
 .certify-note {
-  margin-top: 10px;
-  font-size: 6.5px;
+  margin-top: 8px;
+  font-size: clamp(5px, 1vw, 6.5px);
   color: #444;
   line-height: 1.5;
   font-style: italic;
@@ -339,16 +350,16 @@ body {
 /* ── Bottom row ── */
 .bottom-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 100px;
-  gap: 16px;
-  margin-top: 10px;
-  padding-top: 8px;
+  grid-template-columns: 1fr 1fr 90px;
+  gap: 12px;
+  margin-top: 8px;
+  padding-top: 6px;
   border-top: 2px solid #7777aa;
   align-items: end;
 }
 .sig-line {
   border-bottom: 1px solid #444;
-  min-height: 24px;
+  min-height: 22px;
   display: flex;
   align-items: flex-end;
   padding-bottom: 1px;
@@ -356,14 +367,14 @@ body {
 .sig-input {
   border: none;
   background: transparent;
-  font-size: 11px;
+  font-size: clamp(9px, 1.8vw, 11px);
   font-family: 'Times New Roman', serif;
   color: #111;
   width: 100%;
   outline: none;
 }
 .sig-label {
-  font-size: 7px;
+  font-size: clamp(5px, 1vw, 7px);
   color: #444;
   margin-top: 2px;
   font-family: Arial, sans-serif;
@@ -372,8 +383,8 @@ body {
 /* ── Gold seal ── */
 .seal-area { display: flex; align-items: center; justify-content: center; }
 .seal-gold {
-  width: 72px;
-  height: 72px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 35%, #ffe066, #c8a000 60%, #8a6a00);
   border: 3px solid #c8a000;
@@ -383,8 +394,8 @@ body {
   box-shadow: 0 2px 8px rgba(0,0,0,0.3), inset 0 1px 3px rgba(255,255,200,0.4);
 }
 .seal-gold-inner {
-  width: 58px;
-  height: 58px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   border: 1px solid rgba(255,220,50,0.6);
   display: flex;
@@ -392,8 +403,8 @@ body {
   justify-content: center;
 }
 .seal-logo {
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   object-fit: cover;
   filter: sepia(1) saturate(0.3) brightness(0.7) contrast(1.5);
@@ -401,21 +412,82 @@ body {
 
 /* ── Footer ── */
 .cert-footer {
-  font-size: 7px;
+  font-size: clamp(5px, 1vw, 7px);
   color: #444;
   text-align: center;
-  margin-top: 6px;
+  margin-top: 5px;
   font-style: italic;
   border-top: 1px solid #bbb;
-  padding-top: 4px;
+  padding-top: 3px;
   font-family: 'Times New Roman', serif;
+}
+
+/* ─────────────── MOBILE ─────────────── */
+@media (max-width: 600px) {
+  body { padding: 0.5rem 0.25rem; }
+
+  .toolbar {
+    gap: 5px;
+  }
+  .toolbar input { width: 100%; min-width: 0; }
+
+  .header-logo { width: 44px; height: 44px; }
+
+  /* Name field stays full width already */
+
+  /* Top fields: 2 cols on mobile */
+  .top-fields {
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+  }
+
+  /* Breeder/Owner: 2 cols (name + address stacked per person) */
+  .breeder-owner-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+  }
+
+  /* Pedigree: stack vertically */
+  .pedigree-section {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .col-siredam {
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 1px solid #aaa;
+    padding-bottom: 6px;
+  }
+  .col-mid {
+    padding: 6px 0 6px 0;
+    border-right: none;
+    border-bottom: 1px solid #aaa;
+  }
+  .col-right {
+    padding-left: 0;
+    padding-top: 6px;
+  }
+
+  /* Ancestor grid in mid col: full width single col */
+  #ped-mid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Bottom row: stack */
+  .bottom-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .seal-area { grid-column: 1 / -1; justify-content: flex-start; }
+
+  .awards-table td, .awards-table th { font-size: 6px; }
 }
 
 /* ── Print ── */
 @media print {
   body { background: #fff; padding: 0; }
   .toolbar { display: none; }
-  .doc-outer { width: 100%; }
+  .doc-outer { width: 100%; border: none; }
   .doc-outer::before { display: none; }
   .finput, .anc-input, .sig-input,
   .awards-table select, .awards-table input { color: #000; }
@@ -423,4 +495,14 @@ body {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
+
+  /* restore desktop layout for print */
+  .top-fields { grid-template-columns: 2fr 1fr 1fr 1.2fr 1fr 1.2fr; }
+  .breeder-owner-row { grid-template-columns: 1fr 1.5fr 1fr 1.5fr; }
+  .pedigree-section { grid-template-columns: 1fr 1.4fr 1fr; }
+  .col-siredam { padding-right: 6px; border-right: 1px solid #aaa; border-bottom: none; }
+  .col-mid { padding: 0 6px; border-right: 1px solid #aaa; border-bottom: none; }
+  .col-right { padding-left: 6px; padding-top: 0; }
+  .bottom-row { grid-template-columns: 1fr 1fr 90px; }
+  .seal-area { grid-column: auto; }
 }
